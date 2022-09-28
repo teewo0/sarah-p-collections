@@ -16,6 +16,5 @@ const multerFilter = function (req, file, cb) {
 
 const multerConfig = { storage: multerStorage, fileFilter: multerFilter }
 const upload = multer(multerConfig)
-const uploadMiddleware = upload.single('product')
 
-export default uploadMiddleware
+export default upload.single('imageCover')

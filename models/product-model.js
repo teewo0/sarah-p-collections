@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import slugify from 'slugify'
 
 // /**
 //  * name
@@ -23,26 +24,23 @@ const productSchema = new mongoose.Schema(
 	{
 		name: {
 			type: String,
-			// required: [true, 'A product must have a name'],
+			required: [true, 'A product must have a name'],
 			trim: true,
 			unique: true,
 		},
 		brand: {
 			type: String,
-			// required: [true, 'A product must have a brand'],
+			required: [true, 'A product must have a brand'],
 			trim: true,
 		},
 		category: {
 			type: String,
-			// enum: ['clothing', 'footaware', 'accessories'],
-			// required: [true, 'A product must have a category'],
+			enum: ['clothing', 'footware', 'accessories'],
+			required: [true, 'A product must have a category'],
 		},
-		color: {
-			type: String,
-			// required: [true, 'A product must have a color'],
-		},
+		color: String,
 		description: {
-			// required: [true, 'A product must have a description'],
+			required: [true, 'A product must have a description'],
 			type: String,
 			maxLength: 90,
 		},
@@ -64,19 +62,16 @@ const productSchema = new mongoose.Schema(
 		images: [String],
 		rating: Number,
 		ratingsAverage: Number,
-		salesCategory: {
-			type: String,
-		},
+		salesCategory: String,
 		sizes: [Number],
+		slug: String,
 		price: {
 			type: Number,
-			default: 0,
-			// required: [true, 'A product must have a price'],
+			required: [true, 'A product must have a price'],
 		},
-
-		type: {
+		productType: {
 			type: String,
-			// required: [true, 'A protect must belong to a type'],
+			required: [true, 'A product must belong to a type'],
 			trim: true,
 		},
 		uploadedAt: {
@@ -90,7 +85,6 @@ const productSchema = new mongoose.Schema(
 	}
 )
 
-
 // Create/Save Middlewares
 productSchema.pre('save', function (next) {
 	if (this.discountPercentage) {
@@ -101,11 +95,17 @@ productSchema.pre('save', function (next) {
 	next()
 })
 
+// AUTO GENERATE SLUG PRE-SAVE MIDDLEWARE
+productSchema.pre('save', function (next) {
+	const slugString = `${this.color} ${this.brand} ${this.productType} ${this.name} `
+	this.slug = slugify(slugString, { lower: true })
+	next()
+})
+
 // Query Middlewares
 productSchema.pre(/^find/, function (next) {
 	this.select('-__v')
 	next()
 })
-
 
 export default mongoose.model('Product', productSchema)

@@ -1,0 +1,43 @@
+.formGridContainer {
+    display: grid;
+    gap: 1em;
+    max-width: 800px;
+    padding: 2em;
+    border: 1px solid rgb(185, 185, 185);
+    border-radius: 20px;
+    margin: 4em auto;
+}
+
+.formGridContainer div{
+display: grid;
+gap: .4em;
+}
+
+.select{
+    padding: .7em;
+}
+
+
+.formGridContainer input {
+    padding: .7em;
+    outline: none;
+}
+
+.formBtn {
+    padding: .6em;
+    cursor: pointer;
+    border: none;
+    font-size: larger;
+    border-radius: 10px;
+    color: rgb(61, 61, 61);
+    background-color: rgb(135, 222, 186);
+    text-transform: capitalize;
+    color: rgb(43, 43, 43);
+    transform: scale(1);
+    transition: transform 250ms ease-in-out;
+}
+
+.formBtn:hover,
+.formBtn:focus {
+    transform: scale(1.04);
+}
