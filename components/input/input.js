@@ -1,30 +1,15 @@
 const Input = (props) => {
-	const { type, name, label, accept } = props
+	const { type, name, label, accept, required } = props
 
 	if (type === 'textarea') {
-		return (
-			<div>
-				<label htmlFor={name}>{label}:</label>
-				<textarea rows={6} id={name} name={name}></textarea>
-			</div>
-		)
+		return <textarea rows={6} id={name} name={name}></textarea>
 	}
 
 	if (type === 'file') {
-		return (
-			<div>
-				<label htmlFor={name}>{label}:</label>
-				<input type='file' accept={accept} id={name} name={name} />
-			</div>
-		)
+		return <input type='file' accept={accept} id={name} name={name} />
 	}
 
-	return (
-		<div>
-			<label htmlFor={name}>{label}:</label>
-			<input type={type} id={name} name={name} />
-		</div>
-	)
+	return <input type={type} id={name} name={name} placeholder={label} />
 }
 
 export default Input

@@ -38,7 +38,10 @@ const productSchema = new mongoose.Schema(
 			enum: ['clothing', 'footware', 'accessories'],
 			required: [true, 'A product must have a category'],
 		},
-		color: String,
+		color: {
+			type: String,
+			required: [true, 'A product must have a color'],
+		},
 		description: {
 			required: [true, 'A product must have a description'],
 			type: String,

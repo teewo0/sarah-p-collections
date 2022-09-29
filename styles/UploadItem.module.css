@@ -1,0 +1,57 @@
+.container {
+    margin-top: 3em;
+    padding-inline: 1.4em;
+}
+
+.container>div {
+    margin-bottom: 4em;
+}
+
+.container h1 {
+    line-height: 1;
+    color: rgb(43, 43, 43);
+}
+
+
+.container span {
+    color: #FADA5E;
+}
+
+
+.container p {
+    line-height: 1.5;
+    color: rgb(68, 68, 68);
+}
+
+
+@media (min-width: 650px) {
+    .container h1 {
+        font-size: 2.5em;
+    }
+}
+
+@media (min-width: 800px) {
+    .container {
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3 1fr);
+        gap: 3em;
+
+    }
+
+    .container>div:nth-of-type(1) {
+        margin-top: 15%;
+    }
+
+    .container>div:nth-of-type(2) {
+        padding: 2.5em;
+        -webkit-box-shadow: 0px 0px 26px -11px rgba(0, 0, 0, 0.28);
+        -moz-box-shadow: 0px 0px 26px -11px rgba(0, 0, 0, 0.28);
+        box-shadow: 0px 0px 26px -11px rgba(0, 0, 0, 0.28);
+    }
+
+    .container h1 {
+        font-size: 3.7em;
+    }
+}

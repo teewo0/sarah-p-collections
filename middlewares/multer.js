@@ -9,7 +9,7 @@ const multerFilter = function (req, file, cb) {
 
 	// Nope! Not here fam! Error time🤖.
 	return cb(
-		new Error('Incorrect file format. Please ensure files is of type Image'),
+		new Error('Incorrect file format. Please ensure files are of type Image'),
 		false
 	)
 }
@@ -17,4 +17,8 @@ const multerFilter = function (req, file, cb) {
 const multerConfig = { storage: multerStorage, fileFilter: multerFilter }
 const upload = multer(multerConfig)
 
-export default upload.single('imageCover')
+const uploadConfig = [
+	{ name: 'imageCover', maxCount: 1 },
+	{ name: 'images', maxCount: 5 },
+]
+export default upload.fields(uploadConfig)
