@@ -22,6 +22,7 @@ export async function handleUploadToDb(req, res) {
 		'color',
 		'quantity',
 		'discountPercentage',
+		"sizes",
 	]
 
 	const filtered = setProductToSchema(productObj, filterArr)
@@ -38,7 +39,8 @@ export async function handleUploadToDb(req, res) {
 			filtered.images = req.files.images
 		}
 
-		console.log('Filtered 🧰', filtered)
+		console.log(filtered)
+
 		const newProduct = await Product.create(filtered)
 
 		return res.status(201).json({

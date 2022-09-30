@@ -1,7 +1,7 @@
 import nextConnect from 'next-connect'
 
-import multipartParser from '../../../middlewares/multer'
-import sharpHandler from '../../../middlewares/sharp'
+import imageUpload from '../../../middlewares/multer'
+import imageResizeHandler from '../../../middlewares/sharp'
 import {
 	handleUploadToDb,
 	handleNoMatch,
@@ -13,7 +13,7 @@ const handler = nextConnect({
 	onError: handleError,
 })
 
-handler.use(multipartParser).post(sharpHandler(handleUploadToDb))
+handler.use(imageUpload).post(imageResizeHandler(handleUploadToDb))
 
 export default handler
 

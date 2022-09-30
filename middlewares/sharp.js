@@ -2,7 +2,7 @@ import path from 'path'
 import sharp from 'sharp'
 import { nanoid } from 'nanoid'
 
-function sharpHandler(handler) {
+function imageResizeHandler(handler) {
 	return async function (req, res) {
 		const imagesFilePath = path.join(process.cwd(), 'public', 'images', 'products')
 
@@ -38,4 +38,4 @@ function sharpHandler(handler) {
 	}
 }
 
-export default sharpHandler
+export default imageResizeHandler

@@ -63,10 +63,14 @@ const productSchema = new mongoose.Schema(
 		},
 		imageCover: String,
 		images: [String],
+		inStock: {
+			type: Boolean,
+			default: true,
+		},
 		rating: Number,
 		ratingsAverage: Number,
 		salesCategory: String,
-		sizes: [Number],
+		sizes: [String],
 		slug: String,
 		price: {
 			type: Number,
@@ -88,6 +92,8 @@ const productSchema = new mongoose.Schema(
 	}
 )
 
+productSchema.indexes({ name: 1, description: 1 }, { unique: true })
+
 // Create/Save Middlewares
 productSchema.pre('save', function (next) {
 	if (this.discountPercentage) {
@@ -102,6 +108,14 @@ productSchema.pre('save', function (next) {
 productSchema.pre('save', function (next) {
 	const slugString = `${this.color} ${this.brand} ${this.productType} ${this.name} `
 	this.slug = slugify(slugString, { lower: true })
+	next()
+})
+
+//Set stock value
+productSchema.pre('save', function (next) {
+	if (this.quantity === 0) {
+		this.inStock = false
+	}
 	next()
 })
 

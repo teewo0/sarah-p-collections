@@ -1,0 +1,60 @@
+/* SECOND FORM */
+
+.form {
+    margin-top: 2em;
+}
+
+.sizeContainer {
+    border-radius: 10px;
+    display: grid;
+    gap: 1em;
+    grid-template-columns: repeat(auto-fill, minmax(2.4em, 1fr));
+    padding: 1em;
+    -webkit-box-shadow: 0px 0px 26px -10px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 0px 26px -10px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 26px -10px rgba(0, 0, 0, 0.25);
+}
+
+.size {
+    border: 2px solid red;
+    border-radius: 5px;
+    display: grid;
+    place-content: center;
+    height: 2.4em;
+    -webkit-box-shadow: 0px 0px 26px -9px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 0px 26px -9px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 26px -9px rgba(0, 0, 0, 0.25);
+    font-weight: 500;
+    color: rgb(77, 77, 77);
+}
+
+.sizeElWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin-block: 1em;
+}
+
+.sizeElWrapper>select {
+    padding: 0 1.5em;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #42855b;
+}
+
+.sizeElWrapper>button {
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    color: #42855b;
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 1em 0 0 2.7em;
+}
+
+
+/* 👇This rule is aimed at increasing the hight
+of the parent form component to push the upload btn down since it's positioned absolute to the parent 👇 */
+
+.dummyDiv {
+    height: 120px;
+}
