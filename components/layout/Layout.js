@@ -1,13 +1,13 @@
 import { Fragment } from 'react'
 
-import Header from './Header'
-import Footer from './Footer'
+import Header from './header'
+import Footer from './footer'
 
 const Layout = (props) => {
 	return (
 		<Fragment>
-			{/* <Header /> */}
-			{props.children}
+			<Header />
+			<main>{props.children}</main>
 			{/* <Footer /> */}
 		</Fragment>
 	)

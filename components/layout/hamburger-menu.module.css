@@ -1,0 +1,14 @@
+.burger{
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.burgerItem{
+    height: .1em;
+    width: 30px;
+    background-color: gray;
+}

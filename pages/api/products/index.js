@@ -1,30 +1,24 @@
-import dbConnect from '../../../lib/dbConnect'
-import Product from '../../../models/product-model'
+import nextConnect from 'next-connect'
 
-async function handler(req, res) {
-	const { method } = req
+import logger from '../../../middlewares/logger'
+import imageUploadHandler from '../../../middlewares/multer'
+import imageResizeHandler from '../../../middlewares/sharp'
+import { handleNoMatch, handleError } from '../../../controllers/errorController'
+import { getAllProducts, createProduct } from '../../../controllers/productController'
 
-	if (method === 'GET') {
-		try {
-			await dbConnect()
-			console.log('Connected to database sucessfully 👍')
-			const allProducts = await Product.find()
-			res.status(200).json({
-				success: true,
-				message: 'Products queried successfully',
-				results: allProducts.length,
-				products: allProducts,
-			})
-		} catch (err) {
-			res.status(500).json({ status: 'fail', message: err.message })
-		}
-		return
-	}
+const handler = nextConnect({
+	onNoMatch: handleNoMatch,
+	onError: handleError,
+})
 
-	return res.status(405).json({
-		success: false,
-		message: `${req.method} request is not allowed on the route`,
-	})
+handler.get(getAllProducts)
+handler.use(imageUploadHandler).post(imageResizeHandler(createProduct))
+
+
+export const config = {
+	api: {
+		bodyParser: false, // Disallow body parsing, consume as stream
+	},
 }
 
-export default handler
+export default logger(handler)

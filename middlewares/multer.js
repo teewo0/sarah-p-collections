@@ -7,7 +7,7 @@ const multerFilter = function (req, file, cb) {
 	//Only allow image files to be uploaded
 	if (file.mimetype.startsWith('image')) return cb(null, true)
 
-	// Nope! Not here fam! Error time🤖.
+	// Nope! Not here fam! Error time.
 	return cb(
 		new Error('Incorrect file format. Please ensure files are of type Image'),
 		false
@@ -19,6 +19,8 @@ const upload = multer(multerConfig)
 
 const uploadConfig = [
 	{ name: 'imageCover', maxCount: 1 },
-	{ name: 'images', maxCount: 5 },
+	{ name: 'images', maxCount: 10 },
 ]
+
+
 export default upload.fields(uploadConfig)
