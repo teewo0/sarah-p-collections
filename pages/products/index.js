@@ -1,5 +1,6 @@
-import dbConnect from '../../helpers/db-connect'
+import dbConnect from '../../lib/db-connect'
 import Product from '../../models/product-model'
+import { purify } from '../../lib/utils'
 
 const ProductsPage = ({ products }) => {
 	return <div>Products Page</div>
@@ -7,9 +8,11 @@ const ProductsPage = ({ products }) => {
 
 export async function getStaticProps() {
 	try {
+
 		await dbConnect()
-		const unserializedProducts = await Product.find()
-		const products = JSON.parse(JSON.stringify(unserializedProducts))
+		const results = await Product.find()
+		const products = purify(results)
+
 
 		if (!products) {
 			return { notFound: true }
@@ -19,6 +22,7 @@ export async function getStaticProps() {
 			props: { products },
 			revalidate: 1,
 		}
+		
 	} catch (error) {
 		return { notFound: true }
 	}

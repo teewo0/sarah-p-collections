@@ -1,14 +1,13 @@
-.burger{
-    display: flex;
-    flex-direction: column;
-    width: 50px;
-    height: 50px;
-    align-items: center;
-    justify-content: space-evenly;
+.burger {
+    color: var(--color-dark-gray);
+    font-size: 1.3rem;
+    display: grid;
+    place-content: center;
+    margin-right: .6em;
 }
 
-.burgerItem{
-    height: .1em;
-    width: 30px;
-    background-color: gray;
-}
+/* @media screen and (min-width: 768px) {
+    .burger {
+        display: none;
+    }
+} */

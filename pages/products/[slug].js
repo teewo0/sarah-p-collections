@@ -1,5 +1,6 @@
-import dbConnect from '../../helpers/db-connect'
+import dbConnect from '../../lib/db-connect'
 import Product from '../../models/product-model'
+import { purify } from '../../lib/utils'
 
 import Image from 'next/image'
 
@@ -40,8 +41,8 @@ export async function getStaticProps(context) {
 	try {
 		await dbConnect()
 
-		const unserializedProduct = await Product.findOne({ slug })
-		const product = JSON.parse(JSON.stringify(unserializedProduct))
+		const results = await Product.findOne({ slug })
+		const product = purify(results)
 
 		if (!product) {
 			return { notFound: true }
@@ -62,8 +63,8 @@ export async function getStaticPaths() {
 		const products = await Product.find({})
 
 		const slugPaths = products.map((product) => {
-			const serializedProduct = JSON.parse(JSON.stringify(product))
-			return { params: { slug: serializedProduct.slug } }
+			const result = purify(product)
+			return { params: { slug: result.slug } }
 		})
 
 		return {

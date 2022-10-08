@@ -22,9 +22,11 @@ const FirstForm = (props) => {
 
 			<select className={classes.select} id='category' name='category'>
 				<option value=''>Collection</option>
-				<option value='clothing'>Clothing</option>
+				<option value='top'>Tops</option>
+				<option value='short'>Shorts</option>
+				<option value='pant'>Trousers</option>
 				<option value='footware'>Footware</option>
-				<option value='accessories'>Accessories</option>
+				<option value='accessory'>Accessories</option>
 			</select>
 
 			<div>

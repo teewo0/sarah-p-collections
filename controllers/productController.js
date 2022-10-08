@@ -1,6 +1,6 @@
-import dbConnect from '../helpers/db-Connect'
+import dbConnect from '../lib/db-Connect'
 import Product from '../models/product-model'
-import { setProductToSchema } from '../helpers/products/db-upload'
+import { setProductToSchema } from '../lib/db-upload'
 
 /** Get all products from products collection in database */
 export async function getAllProducts(req, res) {

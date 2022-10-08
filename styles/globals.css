@@ -1,6 +1,14 @@
-::root{
-  
-  --color-dark: #023020;
+:root {
+
+  /* Color Schemes */
+  --color-dark-gray: #333333;
+  --color-dark-gray2: #3f4446;
+
+  /* Header  */
+
+  --font-size-header: 1rem;
+
+
 }
 
 html,
@@ -24,6 +32,7 @@ a {
   html {
     color-scheme: dark;
   }
+
   body {
     color: white;
     background: black;
